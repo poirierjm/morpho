@@ -8,6 +8,7 @@ from pygame import mixer  # Load the popular external library
 
 import Utils
 from PoseModule import PoseDetector
+import vlc
 
 detector = PoseDetector(False, True, 0.5, 0.5)
 
@@ -75,10 +76,11 @@ while cap.isOpened():
                 filepath = path.abspath(basepath + "/audio/" + str(int(push_ups)) + ".ogg")
 
                 try:
-
-                    mixer.init()
-                    mixer.music.load(filepath)
-                    mixer.music.play()
+                    p = vlc.MediaPlayer(filepath)
+                    p.play()
+                    #mixer.init()
+                    ##mixer.music.load(filepath)
+                    #mixer.music.play()
                 except error as message:
                     print(message)
                 # p = vlc.MediaPlayer(filepath)
